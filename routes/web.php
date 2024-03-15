@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\PO\POController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,11 @@ Route::prefix('admin')->middleware(['auth','web','admincheck'])->group(function(
     Route::get('user-edit/{id}',[AdminController::class,'edit']);
     Route::put('user-edit/{id}',[AdminController::class,'update']);
 
+});
+
+Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
+{
+    Route::get('add-asset',[POController::class,'addAsset']);
 });
 Auth::routes();
 

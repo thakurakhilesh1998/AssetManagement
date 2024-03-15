@@ -10,7 +10,7 @@
             <div class="d-flex align-items-center">
               <a href="{{url('/')}}"><img src="{{asset('assets/img/hp_logo.png')}}" alt="image_logo" style="height: auto; width: 100px;" class="m-2"></a>
               <div>
-                <h3 style="font-family:sans-serif; color: #333; margin: 0;" class="text-white">Sanction Management</h3>
+                <h3 style="font-family:sans-serif; color: #333; margin: 0;" class="text-white">Asset Directory</h3>
                 <p style="font-size: 1.2rem; color: #555; margin: 0;" class="fw-bold text-white">Department of Panchayati Raj, Government of Himachal Pradesh.</p>
               </div>
             </div>

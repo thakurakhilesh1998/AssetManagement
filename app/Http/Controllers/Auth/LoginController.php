@@ -35,6 +35,14 @@ class LoginController extends Controller
         {
             return redirect('admin/add-user');
         }
+        else if(Auth::user()->role=='po')
+        {
+            return redirect('po/add-asset');
+        }
+        else
+        {
+            return redirect('/login');
+        }
     }
 
     /**
