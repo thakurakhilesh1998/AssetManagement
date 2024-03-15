@@ -14,7 +14,7 @@
         </div>
         @endif
         <div class="card p-3">
-        <form method="POST" action="{{url('admin/add-asset')}}">
+        <form method="POST" action="{{url('admin/add-asset')}}" id="addAsset" name="addAsset">
             @csrf
             <div class="mb-3">
               <label for="Development Block" class="form-label">Name of Development Block <span class="text-danger">*</span> </label>
@@ -46,7 +46,7 @@
             </div>
             <div class="mb-3">
                 <label for="Owner of Building" class="form-label">Type of Building <span class="text-danger">*</span></label>
-                <select name="owner" id="owner" class="form-control">
+                <select name="type" id="type" class="form-control">
                   <option value="-1">--Select Type of Building--</option>
                   <option value="Official">Official</option>
                   <option value="Shops/Commercial">Shops/Commercial</option>
@@ -56,7 +56,7 @@
 
             <div class="mb-3">
                 <label for="areatype" class="form-label">Urban/Rural Area <span class="text-danger">*</span></label>
-                <select name="owner" id="owner" class="form-control">
+                <select name="area_type" id="area_type" class="form-control">
                   <option value="-1">--Select Type of Area--</option>
                   <option value="Rural">Rural</option>
                   <option value="Urban">Urban</option>
@@ -65,7 +65,7 @@
 
             <div class="mb-3">
                 <label for="areatype" class="form-label">Current Use of the Building <span class="text-danger">*</span></label>
-                <select name="owner" id="owner" class="form-control">
+                <select name="use_of_building" id="use_of_building" class="form-control">
                   <option value="-1">--Select Use of Building--</option>
                   <option value="Own Use">Own Use</option>
                   <option value="On Rent">On Rent</option>
@@ -82,7 +82,7 @@
 
             <div class="mb-3">
                 <label for="areatype" class="form-label">Whether located along the National Highway?<span class="text-danger"> *</span></label>
-                <select name="owner" id="owner" class="form-control">
+                <select name="along_highway" id="along_highway" class="form-control">
                   <option value="-1">--Select--</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
@@ -91,7 +91,7 @@
 
             <div class="mb-3">
                 <label for="Area of Land" class="form-label">Area of Land(in square meter)<span class="text-danger"> *</span></label>
-                <input type="text" class="form-control" id="area" name="area">
+                <input type="text" class="form-control" id="area_land" name="area_land">
             </div>
 
             <div class="mb-3">
@@ -116,12 +116,12 @@
 
             <div class="mb-3">
                 <label for="Jamabandi Copy(only pdf file)" class="form-label">Jamabandi Copy(only pdf file) <span class="text-danger"> *</span></label>
-                <input type="file" class="form-control" id="jamabandi" name="jamabandi">
+                <input type="file" class="form-control" id="jamabandi" name="jamabandi" accept=".pdf">
             </div>
 
             <div class="mb-3">
                 <label for="High Quality Picture " class="form-label">High Quality Picture <span class="text-danger"> *</span></label>
-                <input type="file" class="form-control" id="picture" name="picture">
+                <input type="file" class="form-control" id="picture" name="picture"  accept="image/*">
             </div>
 
             <div class="mb-3">
@@ -145,4 +145,5 @@
         
     });
 </script>
+<script src="{{asset('assets/js/po_data_validation.js')}}"></script>
 @endsection
