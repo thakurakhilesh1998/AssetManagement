@@ -78,7 +78,10 @@ class POController extends Controller
 
     public function editAsset($id)
     {
-        $rddata=Rdassets::find($id);
+        $district=Auth::user()->district;
+        $rddata=Rdassets::find($id)->first();
+        return view('PO/edit-asset',compact('rddata','district'));
+
         
     }
 }
