@@ -60,7 +60,7 @@ class POController extends Controller
             }
             $rdasset->possibility_income=$data['possibility_income'];
             $rdasset->save();
-            return redirect(url('po/viewAsset'))->with(["message"=>"Asset Added Successfully!"]);
+            return redirect(url('po/view-asset'))->with(["message"=>"Asset Added Successfully!"]);
 
         }
         catch(\Exceptionn $e)
@@ -71,8 +71,14 @@ class POController extends Controller
 
     public function viewAsset()
     {
-        $district=Auth::user()->district();
+        $district=Auth::user()->district;
         $rddata=Rdassets::where('district',$district)->get();
-        return view('PO.view-asset',compact('rddata'));
+        return view('PO/view-asset',compact('rddata'));
+    }
+
+    public function editAsset($id)
+    {
+        $rddata=Rdassets::find($id);
+        
     }
 }

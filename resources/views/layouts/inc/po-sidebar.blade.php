@@ -23,9 +23,9 @@
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Add Assets</span>
         </a>
-        <a class="nav-link collapsed" href="{{url('/admin/viewUser')}}" data-toggle="collapse" data-target="#collapseTwo"
+        <a class="nav-link collapsed" href="{{url('/po/view-asset')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <span>Manage Users</span>
+            <span>Manage Assets</span>
         </a>
         <a class="nav-link collapsed" href="{{url('/admin/user/view')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
