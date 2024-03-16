@@ -14,11 +14,11 @@
         </div>
         @endif
         <div class="card p-3">
-        <form method="POST" action="{{url('admin/add-asset')}}" id="addAsset" name="addAsset">
+        <form method="POST" action="{{url('po/add-asset')}}" id="addAsset" name="addAsset"  enctype="multipart/form-data">
             @csrf
-            <div class="mb-3">
+            <div class="mb-3" id="blocks-block">
               <label for="Development Block" class="form-label">Name of Development Block <span class="text-danger">*</span> </label>
-              <select name="block" id="blocklist" class="form-control">
+              <select name="blocklist" id="blocklist" class="form-control">
                 <option value="-1">--Select Block Name--</option>
                 <option value="Ghumarwin">Ghumarwin</option>
                 <option value="Bilaspur Sadar">Bilaspur Sadar</option>
@@ -75,7 +75,7 @@
                 </select>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" id="use_check_other">
                 <label for="Current Use if Other" class="form-label">Current Use of Building (if other please specify here)</label>
                 <input type="text" class="form-control" id="otheruse" name="otheruse">
             </div>
@@ -116,17 +116,17 @@
 
             <div class="mb-3">
                 <label for="Jamabandi Copy(only pdf file)" class="form-label">Jamabandi Copy(only pdf file) <span class="text-danger"> *</span></label>
-                <input type="file" class="form-control" id="jamabandi" name="jamabandi" accept=".pdf">
+                <input type="file" class="form-control" id="jamabandi" name="jamabandi" accept="application/pdf">
             </div>
 
             <div class="mb-3">
                 <label for="High Quality Picture " class="form-label">High Quality Picture <span class="text-danger"> *</span></label>
-                <input type="file" class="form-control" id="picture" name="picture"  accept="image/*">
+                <input type="file" class="form-control" id="picture" name="picture"   accept="image/jpeg, image/jpg, image/png">
             </div>
 
             <div class="mb-3">
                 <label for="Current Rental Income" class="form-label">Possibility of Revenue Generation(specify) <span class="text-danger">*</span></label>
-                <textarea name="legal_dispute" id="legal_dispute" class="form-control"></textarea>
+                <textarea name="possibility_income" id="possibility_income" class="form-control"></textarea>
             </div>
             
 
@@ -142,7 +142,34 @@
 <script>
     $(document).ready(function()
     {
-        
+        // Load the block data
+        $.getJSON("{{asset('assets/json/districts_and_blocks.json')}}",function(data)
+        {
+            
+            let blocksName=data['{{$district}}'];
+            var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select name="blocklist" id="blocklist" class="form-control"><option value="-1">--Select Block--</option>';
+            $.each(blocksName, function(index, block) {
+                blockList += '<option value="' + block + '">' + block + '</option>';
+            });
+            blockList += '</select>';
+            $('#blocks-block').html(blockList);
+            
+        });
+
+
+        $('#use_check_other').hide();
+        $('#use_of_building').on("change",function()
+        {
+            let use_of_building=$(this).val();
+            if(use_of_building==='Other')
+            {
+                $('#use_check_other').show();
+            }
+            else
+            {
+                $('#use_check_other').hide();
+            }
+        });
     });
 </script>
 <script src="{{asset('assets/js/po_data_validation.js')}}"></script>

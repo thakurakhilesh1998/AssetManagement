@@ -12,6 +12,7 @@ $(document).ready(function()
 function validateForm()
 {
     let isValid=true;
+    let blocklist=$('#blocklist').val();
     let propertyName=$('#nameofproperty').val();
     let owner=$('#owner').val();
     let type=$('#type').val();
@@ -22,8 +23,21 @@ function validateForm()
     let areaofbuilding=$('#areaofbuilding').val();
     let gps=$('#gps').val();
     let current_income=$('#current_income').val();
-    // let jamabandifile=$('#jamabandi').val();
-    // Validate Financial Year
+    let possibility_income=$('#possibility_income').val();
+    
+    // Validate Block List
+    if(blocklist==='-1')
+    {
+        isValid=false;
+        $('#blocklist').next(".error").remove();
+        $("#blocklist").after("<span class='error '>Please enter proper Property Name</span>");
+    }
+    else
+    {
+        $("#blocklist").next(".error").remove();  
+    }
+
+    // Validate Property Name
     if(propertyName==='' || propertyName.length<4)
     {
         isValid=false;
@@ -34,7 +48,7 @@ function validateForm()
     {   
         $("#nameofproperty").next(".error").remove();
     }
-
+    // Validate Owner of the Building
     if(owner==="-1")
     {
         isValid=false;
@@ -45,7 +59,7 @@ function validateForm()
     {
         $("#owner").next(".error").remove();
     }
-
+    // Validate Type of Building
     if(type=="-1")
     {
         isValid=false;
@@ -56,7 +70,7 @@ function validateForm()
     {
         $("#type").next(".error").remove();
     }
-
+    // Validate Type of Area
     if(area_type==-1)
     {
         isValid=false;
@@ -67,7 +81,7 @@ function validateForm()
     {
         $("#area_type").next(".error").remove();
     }
-
+    // Validate Use of Building
     if(use_of_building==-1)
     {
         isValid=false;
@@ -79,6 +93,22 @@ function validateForm()
         $("#use_of_building").next(".error").remove();
     }
 
+    if(use_of_building==="Other")
+    {
+        let otheruse=$('#otheruse').val();
+        if(otheruse=='')
+        {
+            isValid=false;
+            $("#otheruse").next(".error").remove();
+            $("#otheruse").after("<span class='error '>Please select Use Building</span>");
+        }
+        else
+        {
+            $("#otheruse").next(".error").remove();
+        }
+    }
+
+    // Validate Along with Highway
     if(along_highway==-1)
     {
         isValid=false;
@@ -89,7 +119,7 @@ function validateForm()
     {
         $("#along_highway").next(".error").remove();
     }
-    
+    // Validate Area of Land
     let areaCheck=/^\d+(\.\d*)?$/.test(area_land);
     if(!areaCheck||area_land==='')
     {
@@ -101,7 +131,7 @@ function validateForm()
     {
         $("#area_land").next(".error").remove();
     }
-
+    // Validate Area of Building
     let areaofbuildingCheck=/^\d+(\.\d*)?$/.test(areaofbuilding);
     if(!areaofbuildingCheck|| areaofbuilding==='')
     {
@@ -113,7 +143,7 @@ function validateForm()
     {
         $("#areaofbuilding").next(".error").remove();
     }
-
+    // Validate GPS
     let gpsCheck= /^-?\d{2}\.\d{6},-?\d{2}\.\d{6}$/.test(gps);
     if(!gpsCheck || gps==='')
     {
@@ -125,7 +155,7 @@ function validateForm()
     {
         $("#gps").next(".error").remove();
     }
-
+    // Validate Income
     var incomeCheck = /^\d+(\.\d{1,2})?$/.test(current_income);
     if(!incomeCheck ||current_income=='')
     {
@@ -164,5 +194,47 @@ function validateForm()
              $("#jamabandi").next(".error").remove();
          }
      }
+    // Validate Image 
+     let pictureInput=$('#picture')[0].files[0];
+     if(!pictureInput)
+     {
+        isValid=false;
+        $('#picture').next('.error').remove();
+        $('#picture').after("<span class='error'>Please select an image.</span>");
+     }
+     else
+     {
+        if (!pictureInput.type.startsWith('image/')) 
+        {
+            isValid = false;
+            $('#picture').next('.error').remove();
+            $('#picture').after("<span class='error'>Please select a valid image file.</span>");
+        }
+        else
+        {
+            if (pictureInput.size > 1048576) { // 1MB in bytes
+                isValid = false;
+                $('#picture').next('.error').remove();
+                $('#picture').after("<span class='error'>Image size should be less than 1MB.</span>");
+            }
+            else
+            {
+                $('#picture').next('.error').remove();
+            }
+        }
+     }
+
+    //  Possibility of Income Check
+     if(possibility_income==''||possibility_income.length<2)
+     {
+        isValid=false;
+        $('#possibility_income').next('.error').remove();
+        $('#possibility_income').after("<span class='error'>Possibility of Income can not be empty.</span>");
+     }
+     else
+     {
+        $('#possibility_income').next('.error').remove();
+     }
+    
     return isValid;
 }

@@ -28,6 +28,8 @@ Route::prefix('admin')->middleware(['auth','web','admincheck'])->group(function(
 Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
 {
     Route::get('add-asset',[POController::class,'addAsset']);
+    Route::post('add-asset',[POController::class,'createAsset']);
+    Route::get('view-asset',[POController::class,'viewAsset']);
 });
 Auth::routes();
 
