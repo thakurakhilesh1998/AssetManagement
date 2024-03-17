@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PO\AssetDataRequests;
+use App\Http\Requests\PO\AssetUpdateRequests;
 use App\Models\Rdassets;
+use Illuminate\Support\Facades\File;
 
 class POController extends Controller
 {
@@ -22,7 +24,8 @@ class POController extends Controller
         {
             $data=$data1->validated();
             $rdasset=new Rdassets;
-            $rdasset->district=Auth::user()->district;
+            $district=Auth::user()->district;
+            $rdasset->district=$district;
             $rdasset->blocklist=$data['blocklist'];
             $rdasset->gp=$data['gp'];
             $rdasset->muncipal_area=$data['muncipal_area'];
@@ -44,7 +47,7 @@ class POController extends Controller
             if($data1->hasFile('jamabandi'))
             {
                 $file=$data1->file('jamabandi');
-                $filename=time().'.'.$file->getClientOriginalExtension();
+                $filename=$district.time().'.'.$file->getClientOriginalExtension();
                 $file->move('uploads/pos/jamabandi',$filename);
                 $rdasset->jamabandi=$filename;
             }
@@ -54,7 +57,7 @@ class POController extends Controller
             if($data1->hasFile('picture'))
             {
                 $file=$data1->file('picture');
-                $filename=time().'.'.$file->getClientOriginalExtension();
+                $filename=$district.time().'.'.$file->getClientOriginalExtension();
                 $file->move('uploads/pos/picture',$filename);
                 $rdasset->picture=$filename;
             }
@@ -71,17 +74,100 @@ class POController extends Controller
 
     public function viewAsset()
     {
-        $district=Auth::user()->district;
-        $rddata=Rdassets::where('district',$district)->get();
-        return view('PO/view-asset',compact('rddata'));
+        try
+        {
+            $district=Auth::user()->district;
+            $rddata=Rdassets::where('district',$district)->get();
+            return view('PO/view-asset',compact('rddata'));
+        }
+        catch(\Exception $e)
+        {
+            return redirect()->back()->withErrors(['error' =>$e->getMessage()]);
+        }
+        
     }
 
     public function editAsset($id)
     {
-        $district=Auth::user()->district;
-        $rddata=Rdassets::find($id)->first();
-        return view('PO/edit-asset',compact('rddata','district'));
+        try
+        {
+            $district=Auth::user()->district;
+            $rddata=Rdassets::find($id);
+            return view('PO/edit-asset',compact('rddata','district'));
+        }
+        catch(\Exception $e)
+        {
+            return redirect()->back()->withErrors(['error' =>$e->getMessage()]);
+        }
+    }
 
-        
+    public function change(AssetUpdateRequests $data1,$id)
+    {
+        $district=Auth::user()->district;
+        if($id!==null)
+        {
+            $rdasset=Rdassets::find($id);
+            if($rdasset && $rdasset->district===$district)
+            {
+                $data=$data1->validated();
+                $rdasset->blocklist=$data['blocklist'];
+                $rdasset->gp=$data['gp'];
+                $rdasset->muncipal_area=$data['muncipal_area'];
+                $rdasset->nameofproperty=$data['nameofproperty'];
+                $rdasset->owner=$data['owner'];
+                $rdasset->type=$data['type'];
+                $rdasset->area_type=$data['area_type'];
+                $rdasset->use_of_building=$data['use_of_building'];
+                $rdasset->otheruse=$data['otheruse'];
+                $rdasset->along_highway=$data['along_highway'];
+                $rdasset->area_land=$data['area_land'];
+                $rdasset->areaofbuilding=$data['areaofbuilding'];
+                $rdasset->gps=$data['gps'];
+                $rdasset->current_income=$data['current_income'];
+                $rdasset->legal_dispute=$data['legal_dispute'];
+                // PDF file checking
+                if(isset($data['jamabandi']))
+                {
+                    if($data1->hasFile('jamabandi'))
+                    {
+                        $destination='uploads/pos/jamabandi/'.$rdasset->jamabandi;
+                        if(File::exists($destination))
+                        {
+                            File::delete($destination);
+                        }
+                        $file=$data1->file('jamabandi');
+                        $filename=$district.time().'.'.$file->getClientOriginalExtension();
+                        $file->move('uploads/pos/jamabandi',$filename);
+                        $rdasset->jamabandi=$filename;
+                    }
+                }
+                // Picture file checking
+                if(isset($data['picture']))
+                {
+                    if($data1->hasFile('picture'))
+                    {
+                        $destination='uploads/pos/picture/'.$rdasset->picture;
+                        if(File::exists($destination))
+                        {
+                            File::delete($destination);
+                        }
+                        $file=$data1->file('picture');
+                        $filename=$district.time().'.'.$file->getClientOriginalExtension();
+                        $file->move('uploads/pos/picture',$filename);
+                        $rdasset->picture=$filename;
+                    }
+                }
+                $rdasset->save();
+                return redirect('po/view-asset')->with('message', 'Data updated successfully!');
+            }
+            else
+            {
+                return redirect()->back()->withErrors(['error' => 'ID not valid for the current district']);
+            }
+        }
+        else
+        {
+            return redirect()->back()->withErrors(['error' =>'ID not be null']);
+        }
     }
 }

@@ -14,8 +14,9 @@
         </div>
         @endif
         <div class="card p-3">
-        <form method="POST" action="{{url('po/edit-asset')}}" id="addAsset" name="addAsset"  enctype="multipart/form-data">
+        <form method="POST" action="{{url('po/edit-asset').'/'.$rddata->id}}" id="editAsset" name="editAsset"  enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="mb-3" id="blocks-block">
             </div>
             <div class="mb-3">
@@ -111,11 +112,13 @@
             <div class="mb-3">
                 <label for="Jamabandi Copy(only pdf file)" class="form-label">Jamabandi Copy(only pdf file) <span class="text-danger"> *</span></label>
                 <input type="file" class="form-control" id="jamabandi" name="jamabandi" accept="application/pdf">
+                <a href="{{url('uploads/pos/jamabandi/'.$rddata->jamabandi)}}" target="_blank">View Jamabandi</a>
             </div>
 
             <div class="mb-3">
-                <label for="High Quality Picture " class="form-label">High Quality Picture <span class="text-danger"> *</span></label>
+                <label for="High Quality Picture" class="form-label">High Quality Picture <span class="text-danger"> *</span></label>
                 <input type="file" class="form-control" id="picture" name="picture"   accept="image/jpeg, image/jpg, image/png">
+                <a href="{{url('uploads/pos/picture/'.$rddata->picture)}}" target="_blank">View Picture</a>
             </div>
 
             <div class="mb-3">
@@ -124,7 +127,7 @@
             </div>
             
 
-            <button type="submit" class="btn btn-primary">Add Asset</button>
+            <button type="submit" class="btn btn-primary">Update Asset</button>
           </form>
    
         </div>
@@ -136,7 +139,17 @@
 <script>
     $(document).ready(function()
     {
-        // Load the block data
+        let use_of_building='{{$rddata->use_of_building}}';
+        if(use_of_building==='Other')
+        {
+            $('#use_check_other').show();
+        }
+        else
+        {
+            $('#use_check_other').hide();
+        }
+        
+        
         $.getJSON("{{asset('assets/json/districts_and_blocks.json')}}",function(data)
         {
             
@@ -147,11 +160,9 @@
             });
             blockList += '</select>';
             $('#blocks-block').html(blockList);
-            
+            let selectBlock='{{$rddata->blocklist}}';
+            $('#blocklist').val(selectBlock);
         });
-
-
-        $('#use_check_other').hide();
         $('#use_of_building').on("change",function()
         {
             let use_of_building=$(this).val();
@@ -166,5 +177,5 @@
         });
     });
 </script>
-<script src="{{asset('assets/js/po_data_validation.js')}}"></script>
+<script src="{{asset('assets/js/po_data_validation_update.js')}}"></script>
 @endsection
