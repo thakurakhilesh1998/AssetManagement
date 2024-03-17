@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PO\POController;
+use App\Http\Controllers\DPO\DPOController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,14 @@ Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
     Route::put('edit-asset/{id}',[POController::class,'change']);
     Route::post('delete-asset',[POController::class,'delete']);
 });
+
+Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
+{
+    Route::get('add-asset',[DPOController::class,'addAasset']);
+    Route::post('add-asset',[DPOController::class,'createAsset']);
+    Route::get('view-asset',[DPOController::class,'viewAsset']);
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
