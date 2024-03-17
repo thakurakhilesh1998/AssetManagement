@@ -32,6 +32,7 @@ Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
     Route::get('view-asset',[POController::class,'viewAsset']);
     Route::get('asset-edit/{id}',[POController::class,'editAsset']);
     Route::put('edit-asset/{id}',[POController::class,'change']);
+    Route::post('delete-asset',[POController::class,'delete']);
 });
 Auth::routes();
 

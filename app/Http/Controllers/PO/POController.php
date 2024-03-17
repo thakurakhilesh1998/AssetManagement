@@ -170,4 +170,35 @@ class POController extends Controller
             return redirect()->back()->withErrors(['error' =>'ID not be null']);
         }
     }
+
+    // Delete Asset
+    public function delete(Request $req)
+    {
+        try
+        {
+            $district=Auth::user()->district;
+            $asset=Rdassets::find($req->id);
+            if(!$asset && $asset->district!=$district)
+            {
+                return response()->json(['error'=>"Asset with this Id does not found."],404);
+            }
+
+            $destination='uploads/pos/jamabandi/'.$asset->jamabandi;
+            if(File::exists($destination))
+            {
+                File::delete($destination);
+            }
+            $destination='uploads/pos/picture/'.$asset->picture;
+            if(File::exists($destination))
+            {
+                File::delete($destination);
+            }
+            $asset->delete();
+            return response()->json(['success' => true, 'message' => 'Asset Deleted Successfully'], 200);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(['success' => false, 'error' => 'Something went wrong', 'message' => $e->getMessage()], 500);
+        }
+    }
 }

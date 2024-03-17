@@ -30,7 +30,7 @@
                             <td>{{$data->type}}</td>
                             <td>{{$data->use_of_building}}</td>
                             <td><a href="{{url('po/asset-edit').'/'.$data->id}}" class="btn btn-primary">Edit</a></td> 
-                            <td><a href="{{url('po/asset-delete').'/'.$data->id}}" class="btn btn-danger">Delete</a></td>
+                            <td><button class="btn btn-danger" data-id="{{$data->id}}" id="delbtn">Delete</button></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -44,7 +44,47 @@
 <script>
     $(document).ready(function()
     {
-        
+        $('#delbtn').on('click',function(e)
+        {
+            e.preventDefault();
+            let button=$(this);
+            let dataid=button.data('id');
+            if(confirm("Are you sure want to delete this asset?Once delted this asset can not be restore!"))
+            {
+                $.ajax(
+                    {
+                        url:'{{ url("po/delete-asset") }}',
+                        type:'POST',
+                        data:{
+                            id:dataid,
+                            _token: '{{ csrf_token() }}',
+                        },
+                        success:function(response)
+                        {
+                            if(response.success)
+                            {
+                                location.reload();
+                            }
+                            else
+                            {
+                                alert(response.message)
+                            }
+                        },
+                        error:function(xhr, status, error)
+                        {
+                            if (xhr.status === 404) {
+                            alert("Progress not found: " + xhr.responseJSON.error);
+                         }
+                          else 
+                         {
+                            alert("Error Updating Freezing: " + xhr.responseJSON.message);
+                         }
+                        }
+
+                    }
+                );
+            }
+        });
     });
 </script>
 

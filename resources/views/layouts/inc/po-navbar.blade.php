@@ -15,7 +15,7 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
           <li>
-            <a class="dropdown-item" href="{{url('admin/change-password')}}" style="color: black">Change Password</a>
+            <div class="dropdown-item">District: {{Auth::user()->district}}</div>
           </li>
           <li>
             <a class="dropdown-item" style="color:black" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
