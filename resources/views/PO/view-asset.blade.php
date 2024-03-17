@@ -11,6 +11,7 @@
            <h3>View Assets</h3> 
         </div>
         <div class="card-body">
+            @if(count($rddata)>0)
             <table class="table table-bordered text-center">
                 <thead>
                     <th>Id</th>
@@ -35,6 +36,9 @@
                     @endforeach
                 </tbody>
             </table>
+            @else
+                <div class="alert alert-primary">No Asset Added Yet!</div>
+            @endif
         </div>
     </div>
 </div>
