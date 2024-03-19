@@ -77,10 +77,21 @@
 
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    {{-- Datatable Script --}}
+     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('assets/js/sb-admin-2.min.js')}}"></script>
 
-
+    <script>
+        $(document).ready( function () {
+            $('#datatable').DataTable({
+                buttons:['excel', 'pdf']
+            });
+            } );
+    </script>
     @yield('scripts')
 
 </body>
