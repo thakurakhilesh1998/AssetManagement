@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="card">
         <div class="card-header">
-            <h3>View Panchayati Raj Data</h3>
+            <h3>View Rural Development Data</h3>
         </div>
         <div class="card-body">
         <div class="table-responsive">
@@ -35,7 +35,7 @@
                 $i=0;
              ?>
             <tbody>
-                @foreach ($prasset as $data)
+                @foreach ($rddata as $data)
                 <?php $i++;?>
                     <tr>
                         <td class='align-middle'>{{$i}}</td>
@@ -56,8 +56,8 @@
                         <td class='align-middle'>{{$data->current_income}}</td>
                         <td class='align-middle'>{{$data->legal_dispute}}</td>
                         <td class='align-middle'>{{$data->possibility_income	}}</td>
-                        <td class='align-middle'><a href="{{asset('uploads/dpo/jamabandi').'/'.$data->jamabandi}}" target="_blank">View</a></td>
-                        <td class='align-middle'><a href="{{asset('uploads/dpo/picture').'/'.$data->picture}}" target="_blank">View</a></td>
+                        <td class='align-middle'><a href="{{asset('uploads/pos/jamabandi').'/'.$data->jamabandi}}" target="_blank">View</a></td>
+                        <td class='align-middle'><a href="{{asset('uploads/pos/picture').'/'.$data->picture}}" target="_blank">View</a></td>
                     </tr>
                 @endforeach
             </tbody>

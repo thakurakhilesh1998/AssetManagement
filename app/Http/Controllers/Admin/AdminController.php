@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\PRAsset;
-use App\Models\Rdasset;
+use App\Models\Rdassets;
 use App\Http\Requests\Admin\UserDataRequest;
 use App\Http\Requests\Admin\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
@@ -108,11 +108,12 @@ class AdminController extends Controller
 
     public function viewRD()
     {
-        
+        $rddata = Rdassets::orderBy('created_at', 'desc')->get();
+        return view('Admin.viewrddata',compact('rddata'));
     }
     public function viewPR()
     {
-        $prasset= PRAsset::all();
+        $prasset = PRAsset::orderBy('created_at', 'desc')->get();
         return view('Admin.viewprdata',compact('prasset'));
     }
 }
