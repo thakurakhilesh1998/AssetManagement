@@ -41,6 +41,9 @@ Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
     Route::get('add-asset',[DPOController::class,'addAasset']);
     Route::post('add-asset',[DPOController::class,'createAsset']);
     Route::get('view-asset',[DPOController::class,'viewAsset']);
+    Route::get('asset-edit/{id}',[DPOController::class,'editAsset']);
+    Route::put('edit-asset/{id}',[DPOController::class,'change']);
+    Route::post('delete-asset',[DPOController::class,'delete']);
 });
 
 Auth::routes();

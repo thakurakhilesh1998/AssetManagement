@@ -13,11 +13,11 @@
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{url('/po/add-asset')}}" data-toggle="collapse" data-target="#collapseTwo"
+        <a class="nav-link collapsed" href="{{url('/dpo/add-asset')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Add Assets</span>
         </a>
-        <a class="nav-link collapsed" href="{{url('/po/view-asset')}}" data-toggle="collapse" data-target="#collapseTwo"
+        <a class="nav-link collapsed" href="{{url('/dpo/view-asset')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Manage Assets</span>
         </a>
