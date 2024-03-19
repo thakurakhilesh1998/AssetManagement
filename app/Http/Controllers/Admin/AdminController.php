@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PRAsset;
+use App\Models\Rdasset;
 use App\Http\Requests\Admin\UserDataRequest;
 use App\Http\Requests\Admin\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
@@ -102,5 +104,15 @@ class AdminController extends Controller
         {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+
+    public function viewRD()
+    {
+        
+    }
+    public function viewPR()
+    {
+        $prasset= PRAsset::all();
+        return view('Admin.viewprdata',compact('prasset'));
     }
 }

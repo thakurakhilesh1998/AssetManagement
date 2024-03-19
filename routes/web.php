@@ -23,6 +23,8 @@ Route::prefix('admin')->middleware(['auth','web','admincheck'])->group(function(
     Route::get('viewUser',[AdminController::class,'viewUser']);
     Route::get('user-edit/{id}',[AdminController::class,'edit']);
     Route::put('user-edit/{id}',[AdminController::class,'update']);
+    Route::get('viewRD',[AdminController::class,'viewRD']);
+    Route::get('viewPR',[AdminController::class,'viewPR']);
 
 });
 

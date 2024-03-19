@@ -27,9 +27,13 @@
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Manage Users</span>
         </a>
-        <a class="nav-link collapsed" href="{{url('/admin/user/view')}}" data-toggle="collapse" data-target="#collapseTwo"
+        <a class="nav-link collapsed" href="{{url('/admin/viewRD')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <span>View Data</span>
+            <span>Rural Development Data</span>
+        </a>
+        <a class="nav-link collapsed" href="{{url('/admin/viewPR/')}}" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <span>View Panchayati Raj Data</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
