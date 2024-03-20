@@ -16,7 +16,9 @@ use App\Http\Controllers\DPO\DPOController;
 |
 */
 
-Route::prefix('admin')->middleware(['auth','web','admincheck'])->group(function()
+Route::middleware(['web','preventCache'])->group(function()
+{
+    Route::prefix('admin')->middleware(['auth','web','admincheck'])->group(function()
 {
     Route::get('add-user',[AdminController::class,'addUser']);
     Route::post('create-user',[AdminController::class,'createUser']);
@@ -50,4 +52,7 @@ Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+
+

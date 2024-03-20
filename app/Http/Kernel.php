@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'admincheck'=>\App\Http\Middleware\AdminCheck::class,
         'pocheck'=>\App\Http\Middleware\POCheck::class,
         'dpocheck'=>\App\Http\Middleware\DPOCheck::class,
+        'preventCache'=>\App\Http\Middleware\PreventCacheMiddleware::class,
     ];
 }
