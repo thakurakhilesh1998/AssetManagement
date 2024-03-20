@@ -91,12 +91,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="Area of Building" class="form-label">Area of Building ( in square meter)<span class="text-danger"> *</span></label>
+                <label for="Area of Building" class="form-label">Area of Building (in square meter)<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="areaofbuilding" name="areaofbuilding">
             </div>
 
             <div class="mb-3">
-                <label for="GP Coordinates" class="form-label">GPS Coordinates <span class="text-danger"> *</span></label>
+                <label for="GP Coordinates" class="form-label">GPS Coordinates(The GPS coordinates must be in the format e.g. 45.212145,54.545687) <span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="gps" name="gps">
             </div>
 
@@ -111,12 +111,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="Jamabandi Copy(only pdf file)" class="form-label">Jamabandi Copy(only pdf file) <span class="text-danger"> *</span></label>
+                <label for="Jamabandi Copy(only pdf file)" class="form-label">Jamabandi Copy(only pdf file)(Max 1 MB file is accpeted) <span class="text-danger"> *</span></label>
                 <input type="file" class="form-control" id="jamabandi" name="jamabandi" accept="application/pdf">
             </div>
 
             <div class="mb-3">
-                <label for="High Quality Picture " class="form-label">High Quality Picture <span class="text-danger"> *</span></label>
+                <label for="High Quality Picture " class="form-label">High Quality Picture(image file only)(Max 1 MB file is accpeted) <span class="text-danger"> *</span></label>
                 <input type="file" class="form-control" id="picture" name="picture"   accept="image/jpeg, image/jpg, image/png">
             </div>
 

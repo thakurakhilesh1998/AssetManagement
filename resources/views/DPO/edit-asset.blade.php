@@ -97,7 +97,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="GP Coordinates" class="form-label">GPS Coordinates <span class="text-danger"> *</span></label>
+                <label for="GP Coordinates" class="form-label">GPS Coordinates (The GPS coordinates must be in the format e.g. 45.212145,54.545687)<span class="text-danger"> *</span></label>
                 <input type="text" class="form-control" id="gps" name="gps" value="{{$prdata->gps}}">
             </div>
 
@@ -112,13 +112,13 @@
             </div>
 
             <div class="mb-3">
-                <label for="Jamabandi Copy(only pdf file)" class="form-label">Jamabandi Copy(only pdf file) <span class="text-danger"> *</span></label>
+                <label for="Jamabandi Copy(only pdf file)" class="form-label">Jamabandi Copy (only pdf file)(Max 1 MB file is accpeted) <span class="text-danger"> *</span></label>
                 <input type="file" class="form-control" id="jamabandi" name="jamabandi" accept="application/pdf">
                 <a href="{{url('uploads/dpo/jamabandi/'.$prdata->jamabandi)}}" target="_blank">View Jamabandi</a>
             </div>
 
             <div class="mb-3">
-                <label for="High Quality Picture" class="form-label">High Quality Picture <span class="text-danger"> *</span></label>
+                <label for="High Quality Picture" class="form-label">High Quality Picture (image file only)(Max 1 MB file is accpeted) <span class="text-danger"> *</span></label>
                 <input type="file" class="form-control" id="picture" name="picture"   accept="image/jpeg, image/jpg, image/png">
                 <a href="{{url('uploads/dpo/picture/'.$prdata->picture)}}" target="_blank">View Picture</a>
             </div>
