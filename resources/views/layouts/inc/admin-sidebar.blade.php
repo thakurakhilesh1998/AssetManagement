@@ -6,11 +6,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{url('admin/dashboard')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
+    
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->
@@ -27,6 +23,11 @@
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Manage Users</span>
         </a>
+    </li>
+    <div class="sidebar-heading">
+        Data
+    </div>
+    <li class="nav-item">
         <a class="nav-link collapsed" href="{{url('/admin/viewRD')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Rural Development Data</span>
@@ -35,6 +36,7 @@
             aria-expanded="true" aria-controls="collapseTwo">
             <span>View Panchayati Raj Data</span>
         </a>
+    </li>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
