@@ -30,7 +30,7 @@ class AdminCheck
         }
         else
         {
-            return rediect('/');
+            return rediect('/login');
         }
         return $next($request);
     }

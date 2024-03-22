@@ -20,6 +20,7 @@ Route::middleware(['web','preventCache'])->group(function()
 {
     Route::prefix('admin')->middleware(['auth','web','admincheck'])->group(function()
 {
+    Route::get('/',[AdminController::class,'addUser']);
     Route::get('add-user',[AdminController::class,'addUser']);
     Route::post('create-user',[AdminController::class,'createUser']);
     Route::get('viewUser',[AdminController::class,'viewUser']);
@@ -32,6 +33,7 @@ Route::middleware(['web','preventCache'])->group(function()
 
 Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
 {
+    Route::get('/',[POController::class,'addAsset']);
     Route::get('add-asset',[POController::class,'addAsset']);
     Route::post('add-asset',[POController::class,'createAsset']);
     Route::get('view-asset',[POController::class,'viewAsset']);
@@ -42,6 +44,7 @@ Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
 
 Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
 {
+    Route::get('/',[DPOController::class,'addAasset']);
     Route::get('add-asset',[DPOController::class,'addAasset']);
     Route::post('add-asset',[DPOController::class,'createAsset']);
     Route::get('view-asset',[DPOController::class,'viewAsset']);
