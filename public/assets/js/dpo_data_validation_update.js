@@ -108,6 +108,33 @@ function validateForm()
         }
     }
 
+    if(use_of_building==='On Rent')
+        {
+            let rent_deposited=$('#rent_deposited').val();
+            let rent_income=$('#rent_income').val();
+            var incomeCheck = /^\d+(\.\d{1,2})?$/.test(rent_income);
+            if(!incomeCheck||rent_income=='')
+            {
+                isValid=false;
+                $('#rent_income').next(".error").remove();
+                $('#rent_income').after("<span class='error '>Please Provide the Rent income.</span>");
+            }
+            else
+            {
+                $("#rent_income").next(".error").remove();        
+            }
+            if(rent_deposited==-1)
+                {
+                    isValid=false;
+                    $('#rent_deposited').next('.error').remove();
+                    $('#rent_deposited').after("<span class='error '>Please select where you money get deposited.</span>");
+                }
+                else
+                {
+                    $("#rent_deposited").next(".error").remove();  
+                }
+        }
+
     // Validate Along with Highway
     if(along_highway==-1)
     {

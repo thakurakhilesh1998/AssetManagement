@@ -47,11 +47,11 @@ class DPOController extends Controller
 
             if($data['rent_deposited']=='-1`')
             {
-                $rdasset['rent_deposited']=null;
+                $prasset['rent_deposited']=null;
             }
             else
             {
-                $rdasset['rent_deposited']=$data['rent_deposited'];
+                $prasset['rent_deposited']=$data['rent_deposited'];
             }
             // Upload PDF file
 
