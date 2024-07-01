@@ -40,6 +40,8 @@ class AssetUpdateRequests extends FormRequest
             'jamabandi'=> ['nullable','file','mimes:pdf','max:1024'],
             'picture'=>['nullable','image','mimes:jpeg,jpg,png','max:1024'],
             'possibility_income' => 'required|min:2',
+            'rent_income'=>'nullable|regex:/^\d+(\.\d{1,2})?$/',
+            'rent_deposited'=>'nullable|string'
         ];
         return $rules;
     }

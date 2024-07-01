@@ -40,7 +40,16 @@ class POController extends Controller
             $rdasset->areaofbuilding=$data['areaofbuilding'];
             $rdasset->gps=$data['gps'];
             $rdasset->current_income=$data['current_income'];
-            $rdasset->legal_dispute=$data['legal_dispute'];
+            $rdasset->legal_dispute=$data['legal_dispute'];    
+            $rdasset->rent_income=$data['rent_income'];
+            if($data['rent_deposited']=='-1`')
+            {
+                $rdasset['rent_deposited']=null;
+            }
+            else
+            {
+                $rdasset['rent_deposited']=$data['rent_deposited'];
+            }
 
             // Upload PDF file
 
@@ -118,7 +127,25 @@ class POController extends Controller
                 $rdasset->type=$data['type'];
                 $rdasset->area_type=$data['area_type'];
                 $rdasset->use_of_building=$data['use_of_building'];
-                $rdasset->otheruse=$data['otheruse'];
+                if($data['use_of_building']!=='Other')
+                {
+                    $rdasset->otheruse=null;
+                }
+                else
+                {
+                    $rdasset->otheruse=$data['otheruse'];
+                }
+
+                if($data['use_of_building']!=='On Rent')
+                {
+                    $rdasset->rent_income=null;
+                    $rdasset->rent_deposited=null;
+                }
+                else
+                {
+                    $rdasset->rent_income=$data['rent_income'];
+                    $rdasset->rent_deposited=$data['rent_deposited'];
+                }
                 $rdasset->along_highway=$data['along_highway'];
                 $rdasset->area_land=$data['area_land'];
                 $rdasset->areaofbuilding=$data['areaofbuilding'];

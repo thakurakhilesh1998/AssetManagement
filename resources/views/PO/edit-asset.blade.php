@@ -69,7 +69,19 @@
                   <option value="Other" {{$rddata->use_of_building==='Other'?'selected':''}}>Other</option>
                 </select>
             </div>
-
+            {{-- Linked with Rent --}}
+            <div class="mb-3" id="use_check_onrent">
+                <label for="Current use if On Rent" class="form-label">Enter Amount (If On Rent)</label>
+                <input type="text" class="form-control" id="rent_income" name="rent_income" value="{{$rddata->rent_income}}">
+            </div>
+            <div class="mb-3" id="use_rent_depositin">
+                <label for="Rent Deposited In" class="form-label">Select Where Rent Amount is Deposited(If On Rent)</label>
+                <select name="rent_deposited" id="rent_deposited" class="form-control">
+                    <option value="-1">--Select Where Rent Amount is Deposited--</option>
+                    <option value="State treasury" {{$rddata->rent_deposited==='State treasury'?'selected':''}}>State Treasury</option>
+                    <option value="Bank account" {{$rddata->rent_deposited==='Bank account'?'selected':''}}>Bank Account</option>
+                </select>
+            </div>
             <div class="mb-3" id="use_check_other">
                 <label for="Current Use if Other" class="form-label">Current Use of Building (if other please specify here)</label>
                 <input type="text" class="form-control" id="otheruse" name="otheruse" value="{{$rddata->otheruse}}">
@@ -143,10 +155,20 @@
         if(use_of_building==='Other')
         {
             $('#use_check_other').show();
+            $('#use_check_onrent').hide();
+            $('#use_rent_depositin').hide();
         }
+        else if(use_of_building==='On Rent')
+        {
+            $('#use_check_other').hide();
+            $('#use_check_onrent').show();
+            $('#use_rent_depositin').show();
+        }   
         else
         {
             $('#use_check_other').hide();
+            $('#use_check_onrent').hide();
+            $('#use_rent_depositin').hide();
         }
         
         
@@ -169,10 +191,20 @@
             if(use_of_building==='Other')
             {
                 $('#use_check_other').show();
+                $('#use_check_onrent').hide();
+                $('#use_rent_depositin').hide();
+            }
+            else if(use_of_building==='On Rent')
+            {
+                $('#use_check_other').hide();
+                $('#use_check_onrent').show();
+                $('#use_rent_depositin').show();
             }
             else
             {
                 $('#use_check_other').hide();
+                $('#use_check_onrent').hide();
+                $('#use_rent_depositin').hide();
             }
         });
     });
