@@ -43,7 +43,16 @@ class DPOController extends Controller
             $prasset->gps=$data['gps'];
             $prasset->current_income=$data['current_income'];
             $prasset->legal_dispute=$data['legal_dispute'];
+            $prasset->rent_income=$data['rent_income'];
 
+            if($data['rent_deposited']=='-1`')
+            {
+                $rdasset['rent_deposited']=null;
+            }
+            else
+            {
+                $rdasset['rent_deposited']=$data['rent_deposited'];
+            }
             // Upload PDF file
 
             if($data1->hasFile('jamabandi'))
@@ -119,7 +128,27 @@ class DPOController extends Controller
                 $prasset->type=$data['type'];
                 $prasset->area_type=$data['area_type'];
                 $prasset->use_of_building=$data['use_of_building'];
-                $prasset->otheruse=$data['otheruse'];
+                if($data['use_of_building']!=='Other')
+                {
+                    $prasset->otheruse=null;
+                }
+                else
+                {
+                    $prasset->otheruse=$data['otheruse'];
+                }
+
+                if($data['use_of_building']!=='On Rent')
+                {
+                    $prasset->rent_income=null;
+                    $prasset->rent_deposited=null;
+                }
+                else
+                {
+                    $prasset->rent_income=$data['rent_income'];
+                    $prasset->rent_deposited=$data['rent_deposited'];
+                }
+
+                
                 $prasset->along_highway=$data['along_highway'];
                 $prasset->area_land=$data['area_land'];
                 $prasset->areaofbuilding=$data['areaofbuilding'];
