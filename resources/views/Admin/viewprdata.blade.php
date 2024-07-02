@@ -20,6 +20,8 @@
                 <th class='align-middle'>Type of Building</th>
                 <th class='align-middle'>Urban/Rural Area</th>
                 <th class='align-middle'>Current Use of Building</th>
+                <th class='align-middle'>If Current Use of Building <b>On Rent(Rent Amount)</b></th>
+                <th class='align-middle'>If Current Use of Building <b>On Rent(Rent Deposited In)</b></th>
                 <th class='align-middle'>Current Use of Building(If other please specify Here)</th>
                 <th class='align-middle'>Whether located along the National Highway?</th>
                 <th class='align-middle'>Area of Land(in square meter)</th>
@@ -38,26 +40,28 @@
                 @foreach ($prasset as $data)
                 <?php $i++;?>
                     <tr>
-                        <td class='align-middle'>{{$i}}</td>
-                        <td class='align-middle'>{{$data->district}}</td>
-                        <td class='align-middle'>{{$data->blocklist}}</td>
-                        <td class='align-middle'>{{$data->gp}}</td>
-                        <td class='align-middle'>{{$data->muncipal_area}}</td>
-                        <td class='align-middle'>{{$data->nameofproperty}}</td>
-                        <td class='align-middle'>{{$data->owner}}</td>
-                        <td class='align-middle'>{{$data->type}}</td>
-                        <td class='align-middle'>{{$data->area_type}}</td>
-                        <td class='align-middle'>{{$data->use_of_building}}</td>
-                        <td class='align-middle'>{{$data->otheruse}}</td>
-                        <td class='align-middle'>{{$data->along_highway}}</td>
-                        <td class='align-middle'>{{$data->area_land}}</td>
-                        <td class='align-middle'>{{$data->areaofbuilding}}</td>
-                        <td class='align-middle'>{{$data->gps}}</td>
-                        <td class='align-middle'>{{$data->current_income}}</td>
-                        <td class='align-middle'>{{$data->legal_dispute}}</td>
-                        <td class='align-middle'>{{$data->possibility_income	}}</td>
-                        <td class='align-middle'><a href="{{asset('uploads/dpo/jamabandi').'/'.$data->jamabandi}}" target="_blank">View</a></td>
-                        <td class='align-middle'><a href="{{asset('uploads/dpo/picture').'/'.$data->picture}}" target="_blank">View</a></td>
+                        <td class=''>{{$i}}</td>
+                        <td class=''>{{$data->district}}</td>
+                        <td class=''>{{$data->blocklist}}</td>
+                        <td class=''>{{$data->gp}}</td>
+                        <td class=''>{{$data->muncipal_area}}</td>
+                        <td class=''>{{$data->nameofproperty}}</td>
+                        <td class=''>{{$data->owner}}</td>
+                        <td class=''>{{$data->type}}</td>
+                        <td class=''>{{$data->area_type}}</td>
+                        <td class=''>{{$data->use_of_building}}</td>
+                        <td class=''>{{$data->rent_income}}</td>
+                        <td class=''>{{$data->rent_deposited}}</td>
+                        <td class=''>{{$data->otheruse}}</td>
+                        <td class=''>{{$data->along_highway}}</td>
+                        <td class=''>{{$data->area_land}}</td>
+                        <td class=''>{{$data->areaofbuilding}}</td>
+                        <td class=''>{{$data->gps}}</td>
+                        <td class=''>{{$data->current_income}}</td>
+                        <td class=''>{{$data->legal_dispute}}</td>
+                        <td class=''>{{$data->possibility_income}}</td>
+                        <td class=''><a href="{{asset('uploads/dpo/jamabandi').'/'.$data->jamabandi}}" target="_blank">View</a></td>
+                        <td class=''><a href="{{asset('uploads/dpo/picture').'/'.$data->picture}}" target="_blank">View</a></td>
                     </tr>
                 @endforeach
             </tbody>

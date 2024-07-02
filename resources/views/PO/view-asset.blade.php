@@ -31,7 +31,7 @@
                             <td>{{$data->type}}</td>
                             <td>{{$data->use_of_building}}</td>
                             <td><a href="{{url('po/asset-edit').'/'.$data->id}}" class="btn btn-primary">Edit</a></td> 
-                            <td><button class="btn btn-danger" data-id="{{$data->id}}" id="delbtn">Delete</button></td>
+                            <td><button class="btn btn-danger delbtn" data-id="{{$data->id}}">Delete</button></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -48,7 +48,7 @@
 <script>
     $(document).ready(function()
     {
-        $('#delbtn').on('click',function(e)
+        $('.delbtn').on('click',function(e)
         {
             e.preventDefault();
             let button=$(this);

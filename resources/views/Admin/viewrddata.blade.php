@@ -20,6 +20,8 @@
                 <th class='align-middle'>Type of Building</th>
                 <th class='align-middle'>Urban/Rural Area</th>
                 <th class='align-middle'>Current Use of Building</th>
+                <th class='align-middle'>If Current Use of Building <b>On Rent(Rent Amount)</b></th>
+                <th class='align-middle'>If Current Use of Building <b>On Rent(Rent Deposited In)</b></th>
                 <th class='align-middle'>Current Use of Building(If other please specify Here)</th>
                 <th class='align-middle'>Whether located along the National Highway?</th>
                 <th class='align-middle'>Area of Land(in square meter)</th>
@@ -48,6 +50,8 @@
                         <td class='align-middle'>{{$data->type}}</td>
                         <td class='align-middle'>{{$data->area_type}}</td>
                         <td class='align-middle'>{{$data->use_of_building}}</td>
+                        <td class='align-middle'>{{$data->rent_income}}</td>
+                        <td class='align-middle'>{{$data->rent_deposited}}</td>
                         <td class='align-middle'>{{$data->otheruse}}</td>
                         <td class='align-middle'>{{$data->along_highway}}</td>
                         <td class='align-middle'>{{$data->area_land}}</td>
