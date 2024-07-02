@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('admin/dashboard')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/dpo/view-asset')}}">
         <div class="sidebar-brand-text mx-3">District Panchayat Officer</div>
     </a>
     <!-- Divider -->

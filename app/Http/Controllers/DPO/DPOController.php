@@ -89,7 +89,7 @@ class DPOController extends Controller
         {
             $district=Auth::user()->district;
             $prdata=PRAsset::where('district',$district)->get();
-            return view('dpo/view-asset',compact('prdata'));
+            return view('DPO/view-asset',compact('prdata'));
         }
         catch(\Exception $e)
         {

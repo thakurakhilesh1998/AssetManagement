@@ -15,7 +15,7 @@ class AdminController extends Controller
 {
     public function addUser()
     {
-        return view('admin.adduser');
+        return view('Admin.adduser');
     }
 
     public function createUser(UserDataRequest $req)
@@ -44,7 +44,7 @@ class AdminController extends Controller
         try
         {
             $user=User::all();
-            return view('admin.viewuser',compact('user'));
+            return view('Admin.viewuser',compact('user'));
         }
         catch (\Exception $e)
         {
