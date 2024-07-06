@@ -28,6 +28,7 @@ Route::middleware(['web','preventCache'])->group(function()
     Route::put('user-edit/{id}',[AdminController::class,'update']);
     Route::get('viewRD',[AdminController::class,'viewRD']);
     Route::get('viewPR',[AdminController::class,'viewPR']);
+    Route::get('dashboard',[AdminController::class,'dashboard']);
 
 });
 

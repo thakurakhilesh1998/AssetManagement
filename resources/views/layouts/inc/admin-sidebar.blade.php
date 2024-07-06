@@ -28,6 +28,10 @@
         Data
     </div>
     <li class="nav-item">
+        <a class="nav-link collapsed" href="{{url('/admin/dashboard')}}" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <span>Dashboard</span>
+        </a>
         <a class="nav-link collapsed" href="{{url('/admin/viewRD')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Rural Development Data</span>

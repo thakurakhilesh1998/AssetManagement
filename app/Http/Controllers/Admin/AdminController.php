@@ -10,6 +10,7 @@ use App\Models\Rdassets;
 use App\Http\Requests\Admin\UserDataRequest;
 use App\Http\Requests\Admin\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -115,5 +116,40 @@ class AdminController extends Controller
     {
         $prasset = PRAsset::orderBy('created_at', 'desc')->get();
         return view('Admin.viewprdata',compact('prasset'));
+    }
+
+    public function dashboard()
+    {
+        // Count Assets from RD 
+        $rddataCount = Rdassets::select('district',DB::raw('count(*) as count'))
+        ->groupBy('district')
+        ->orderBy('district')
+        ->get()
+        ->keyBy('district');
+        // Count Assets from PR
+        $prdataCount = PRAsset::select('district',DB::raw('count(*) as count'))
+        ->groupBy('district')
+        ->orderBy('district')
+        ->get()
+        ->keyBy('district');
+
+        // Combine data
+        $mergedCounts = [];
+        foreach($rddataCount as $district=>$data)
+        {
+            $mergedCounts[$district]['Rdassets']=$data->count;
+            $mergedCounts[$district]['PRAsset']=0;
+        }
+
+        foreach($prdataCount as $district => $data)
+        {
+            if(!isset($mergedCounts[$district]))
+            {
+                $mergedCounts[$district]['Rdassets']=0;
+            }
+            $mergedCounts[$district]['PRAsset']=$data->count;
+        }
+        ksort($mergedCounts);
+        return view('Admin.dashboard',['districtCount'=>$mergedCounts]);
     }
 }
