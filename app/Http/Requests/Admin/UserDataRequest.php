@@ -21,7 +21,7 @@ class UserDataRequest extends FormRequest
      */
     public function rules(): array
     {
-        $roles=['admin','po','dpo'];
+        $roles=['admin','po','dpo','PRTI'];
         $district=['Bilaspur','Chamba','Hamirpur','Kangra','Kinnaur','Kullu','Lahul And Spiti','Mandi','Shimla','Sirmaur','Solan','Una'];
         $rules=[
             'username'=>['required','string'],

@@ -36,6 +36,7 @@
                     <option value="admin">Admin</option>
                     <option value="po">PO</option>
                     <option value="dpo">DPO</option>
+                    <option value="PRTI">PRTI</option>
                 </select>
             </div>
 
