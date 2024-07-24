@@ -36,6 +36,10 @@ class LoginController extends Controller
         {
             return redirect('dpo/');
         }
+        else if(Auth::user()->role='bdo')
+        {
+            return redirect('bdo/');
+        }
         else
         {
             return redirect(Auth::user()->role);

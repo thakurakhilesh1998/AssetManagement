@@ -30,6 +30,7 @@ class AdminController extends Controller
             $user->password=Hash::make($req['password']);
             $user->role=$req['role'];
             $user->district=$req['district'];
+            $user->bdo=$req['bdo'];
             $user->save();
             return redirect(url('admin/viewUser'));
 

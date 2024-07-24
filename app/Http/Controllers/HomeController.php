@@ -33,6 +33,8 @@ class HomeController extends Controller
                 return redirect('po/');
             case 'dpo':
                 return redirect('dpo/');
+            case 'bdo':
+                return redirect('bdo/');
             default:
                 return redirect()->route('login');
         }

@@ -21,7 +21,7 @@ class UserDataRequest extends FormRequest
      */
     public function rules(): array
     {
-        $roles=['admin','po','dpo','PRTI'];
+        $roles=['admin','po','dpo','bdo'];
         $district=['Bilaspur','Chamba','Hamirpur','Kangra','Kinnaur','Kullu','Lahul And Spiti','Mandi','Shimla','Sirmaur','Solan','Una'];
         $rules=[
             'username'=>['required','string'],
@@ -29,6 +29,7 @@ class UserDataRequest extends FormRequest
             'password'=>['required','string','min:8','confirmed'],
             'role'=>['required','string','in:' . implode(',', $roles)],
             'district'=>['required','string','in:'.implode(',',$district)],
+            'bdo'=>['string']
         ];
         return $rules;
     }

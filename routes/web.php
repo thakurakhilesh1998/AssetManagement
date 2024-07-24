@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PO\POController;
 use App\Http\Controllers\DPO\DPOController;
+use App\Http\Controllers\BDO\BDOController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,18 @@ Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
     Route::get('asset-edit/{id}',[DPOController::class,'editAsset']);
     Route::put('edit-asset/{id}',[DPOController::class,'change']);
     Route::post('delete-asset',[DPOController::class,'delete']);
+});
+
+Route::prefix('bdo')->middleware(['auth','web','bdocheck'])->group(function()
+{
+    Route::get('/',[BDOController::class,'addAsset']);
+    Route::get('add-assetpr',[BDOController::class,'addAsset']);
+    Route::post('add-assetpr',[BDOController::class,'createAsset']);
+    Route::get('view-assetpr',[BDOController::class,'viewAsset']);
+    Route::get('asset-editpr/{id}',[BDOController::class,'editAsset']);
+    Route::put('edit-assetpr/{id}',[BDOController::class,'change']);
+
+    Route::get('add-assetrd',[BDOController::class,'addAssetRd']);
 });
 
 Auth::routes();

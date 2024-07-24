@@ -36,7 +36,7 @@
                     <option value="admin">Admin</option>
                     <option value="po">PO</option>
                     <option value="dpo">DPO</option>
-                    <option value="PRTI">PRTI</option>
+                    <option value="bdo">BDO</option>
                 </select>
             </div>
 
@@ -58,6 +58,14 @@
                     <option value="Una">Una</option>
                 </select>
             </div>
+
+            <div class="mb-3">
+                <select id="blocklist" style="display: none;" class="form-control" name="bdo">
+                    <option value="">Select Block</option>
+                    <!-- Blocks will be loaded dynamically -->
+                </select>    
+            </div>
+            
             <button type="submit" class="btn btn-primary">Create User</button>
           </form>
     </div>
@@ -68,7 +76,36 @@
 <script>
     $(document).ready(function()
     {
-        
+        let role='';
+        $('#role').on('change',function()
+        {
+            role=$('#role').val();
+            if(role==='bdo')
+            {
+                $('#blocklist').show();
+            }
+            else
+            {
+                $('#blocklist').hide();
+            }
+        });
+
+        $('#districtlist').on('change',function()
+        {
+            if(role==='bdo')
+            {
+                let district=$('#districtlist').val();
+                $.getJSON("{{ asset('assets/json/districts_and_blocks.json') }}",function(data)
+                {
+                    let blocks=data[district] || [];
+                    let blockOptions='<option value="">--Select Block--</option>';
+                    blocks.forEach(function(block){
+                        blockOptions+=`<option value="${block}">${block}</option>`;
+                    });
+                    $('#blocklist').html(blockOptions);
+                });
+            }
+        });
     });
 </script>
 @endsection
