@@ -9,6 +9,8 @@ use App\Models\PRAsset;
 use App\Http\Requests\DPO\AssetDataRequests;
 use App\Http\Requests\DPO\AssetUpdateRequests;
 use Illuminate\Support\Facades\File;
+
+
 class BDOController extends Controller
 {
     public function addAsset()
@@ -196,12 +198,5 @@ class BDOController extends Controller
         {
             return redirect()->back()->withErrors(['error' =>'ID not be null']);
         }
-    }
-
-    // RD DAta
-    public function addAssetRd()
-    {
-        $bdo=Auth::user()->bdo;
-        return view('BDO.add-assetrd',compact('bdo'));
     }
 }

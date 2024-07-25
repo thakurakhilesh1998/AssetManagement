@@ -29,7 +29,7 @@ class UserDataRequest extends FormRequest
             'password'=>['required','string','min:8','confirmed'],
             'role'=>['required','string','in:' . implode(',', $roles)],
             'district'=>['required','string','in:'.implode(',',$district)],
-            'bdo'=>['string']
+            'bdo'=>['string','nullable']
         ];
         return $rules;
     }

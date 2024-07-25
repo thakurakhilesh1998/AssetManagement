@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PO\POController;
 use App\Http\Controllers\DPO\DPOController;
 use App\Http\Controllers\BDO\BDOController;
+use App\Http\Controllers\BDO\RDController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,8 +64,12 @@ Route::prefix('bdo')->middleware(['auth','web','bdocheck'])->group(function()
     Route::get('view-assetpr',[BDOController::class,'viewAsset']);
     Route::get('asset-editpr/{id}',[BDOController::class,'editAsset']);
     Route::put('edit-assetpr/{id}',[BDOController::class,'change']);
-
-    Route::get('add-assetrd',[BDOController::class,'addAssetRd']);
+    // Rural Development Assets
+    Route::get('add-assetrd',[RDController::class,'addAssetRd']);
+    Route::post('add-assetrd',[RDController::class,'createAssetPr']);
+    Route::get('view-assetrd',[RDController::class,'viewAsset']);
+    Route::get('asset-editrd/{id}',[RDController::class,'editAsset']);
+    Route::put('edit-assetrd/{id}',[RDController::class,'change']);
 });
 
 Auth::routes();

@@ -14,9 +14,10 @@
         </div>
         @endif
         <div class="card p-3">
-        <form method="POST" action="{{url('po/add-asset')}}" id="addAsset" name="addAsset"  enctype="multipart/form-data">
+        <form method="POST" action="{{url('bdo/add-assetrd')}}" id="addAsset" name="addAsset"  enctype="multipart/form-data">
             @csrf
             <div class="mb-3" id="blocks-block">
+                <input type="text" value="{{$bdo}}" readonly name="blocklist" class="form-control">
             </div>
             <div class="mb-3">
               <label for="gram panchayat" class="form-label">Name of Gram Panchayat (if Building is located in the Gram Panchayat)</label>
@@ -150,21 +151,8 @@
 <script>
     $(document).ready(function()
     {
+
         // Load the block data
-        $.getJSON("{{asset('assets/json/districts_and_blocks.json')}}",function(data)
-        {
-            
-            let blocksName=data['{{$district}}'];
-            var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select name="blocklist" id="blocklist" class="form-control"><option value="-1">--Select Block--</option>';
-            $.each(blocksName, function(index, block) {
-                blockList += '<option value="' + block + '">' + block + '</option>';
-            });
-            blockList += '</select>';
-            $('#blocks-block').html(blockList);
-            
-        });
-
-
         $('#use_check_other').hide();
         $('#use_check_onrent').hide();
         $('#use_rent_depositin').hide();
