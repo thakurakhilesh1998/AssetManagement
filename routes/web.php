@@ -34,7 +34,7 @@ Route::middleware(['web','preventCache'])->group(function()
 
 });
 
-Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
+Route::prefix('po')->middleware(['auth','web','pocheck','showTimePeriodOver'])->group(function()
 {
     Route::get('/',[POController::class,'addAsset']);
     Route::get('add-asset',[POController::class,'addAsset']);
@@ -45,7 +45,7 @@ Route::prefix('po')->middleware(['auth','web','pocheck'])->group(function()
     Route::post('delete-asset',[POController::class,'delete']);
 });
 
-Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
+Route::prefix('dpo')->middleware(['auth','web','dpocheck','showTimePeriodOver'])->group(function()
 {
     Route::get('/',[DPOController::class,'addAasset']);
     Route::get('add-asset',[DPOController::class,'addAasset']);
@@ -56,7 +56,7 @@ Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
     Route::post('delete-asset',[DPOController::class,'delete']);
 });
 
-Route::prefix('bdo')->middleware(['auth','web','bdocheck'])->group(function()
+Route::prefix('bdo')->middleware(['auth','web','bdocheck','showTimePeriodOver'])->group(function()
 {
     Route::get('/',[BDOController::class,'addAsset']);
     Route::get('add-assetpr',[BDOController::class,'addAsset']);
@@ -75,6 +75,11 @@ Route::prefix('bdo')->middleware(['auth','web','bdocheck'])->group(function()
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/time-over',function()
+{   
+    return view('timeOver');
+})->name('timeOver');
 });
 
 

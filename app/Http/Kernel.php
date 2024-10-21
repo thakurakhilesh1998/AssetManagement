@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'dpocheck'=>\App\Http\Middleware\DPOCheck::class,
         'bdocheck'=>\App\Http\Middleware\BDOCheck::class,
         'preventCache'=>\App\Http\Middleware\PreventCacheMiddleware::class,
+        'showTimePeriodOver'=>\App\Http\Middleware\ShowTimePeriodOver::class
     ];
 }
