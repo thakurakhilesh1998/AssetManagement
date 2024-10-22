@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Meeting\MeetingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PO\POController;
@@ -45,7 +46,7 @@ Route::prefix('po')->middleware(['auth','web','pocheck','showTimePeriodOver'])->
     Route::post('delete-asset',[POController::class,'delete']);
 });
 
-Route::prefix('dpo')->middleware(['auth','web','dpocheck','showTimePeriodOver'])->group(function()
+Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
 {
     Route::get('/',[DPOController::class,'addAasset']);
     Route::get('add-asset',[DPOController::class,'addAasset']);
@@ -54,6 +55,9 @@ Route::prefix('dpo')->middleware(['auth','web','dpocheck','showTimePeriodOver'])
     Route::get('asset-edit/{id}',[DPOController::class,'editAsset']);
     Route::put('edit-asset/{id}',[DPOController::class,'change']);
     Route::post('delete-asset',[DPOController::class,'delete']);
+
+    // Start of Meeting 
+    Route::get('create-meeting',[MeetingController::class,'create']);
 });
 
 Route::prefix('bdo')->middleware(['auth','web','bdocheck','showTimePeriodOver'])->group(function()
