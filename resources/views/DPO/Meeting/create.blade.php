@@ -14,7 +14,7 @@
         </div>
     </div>  
     <div class="card p-3">
-       <form action="" method="POST" action="dpo/add-meeting" id="addMeeting" name="addMeeting"  enctype="multipart/form-data">
+       <form action="" method="POST" action="" id="addMeeting" name="addMeeting"  enctype="multipart/form-data">
             @csrf
             {{-- Month of Meeting --}}
             <div class="mb-3">
