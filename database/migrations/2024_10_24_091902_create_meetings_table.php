@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prmeeting', function (Blueprint $table) {
+        Schema::create('prmeetings', function (Blueprint $table) {
             $table->id();
-            $table->string('month');
-            $table->enum('meetingconvened',['Yes','No']);
-            $table->string('subject');
-            $table->string('proceedings');
-            $table->string('date');
-            $table->enum('isverified',['Yes','No'])->nullable();
+            $table->string('district');
+            $table->string('meeting_month');
+            $table->enum('meeting_convened',['Yes','No']);
+            $table->date('meeting_date')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('filename')->nullable();
+
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prmeeting');
+        Schema::dropIfExists('prmeetings');
     }
 };

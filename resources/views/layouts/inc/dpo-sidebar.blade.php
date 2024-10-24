@@ -40,7 +40,7 @@
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Add Meetings</span>
         </a>
-        <a class="nav-link collapsed" href="{{url('/dpo/view-asset')}}" data-toggle="collapse" data-target="#collapseTwo"
+        <a class="nav-link collapsed" href="{{url('/dpo/view-meeting')}}" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <span>Manage Meetings</span>
         </a>

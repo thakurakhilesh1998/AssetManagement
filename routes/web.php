@@ -58,6 +58,19 @@ Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
 
     // Start of Meeting 
     Route::get('create-meeting',[MeetingController::class,'create']);
+    Route::post('add-meeting',[MeetingController::class,'addMeeting']);
+    Route::get('view-meeting',[MeetingController::class,'viewMeeting']);
+    Route::post('check-meeting',[MeetingController::class,'checkMeeting'])->name('meetingexits');
+    // View Proceedings File
+    Route::get('/view-proceedings/{filename}',function($filename)
+    {
+        $filePath='private/dpo/'.$filename;
+        if(Storage::fileExists($filePath));
+        {
+            return Storage::download($filePath);
+        }
+        abort(404);
+    })->name('view-proceedings');
 });
 
 Route::prefix('bdo')->middleware(['auth','web','bdocheck','showTimePeriodOver'])->group(function()

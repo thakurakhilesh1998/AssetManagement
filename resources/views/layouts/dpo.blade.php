@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>District Panchayat Officer</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
