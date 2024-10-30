@@ -47,7 +47,14 @@
                             @endif
                         </td>
                         <td>Edit</td>
-                        <td>Verify</td>
+                        <td>
+                            <form action="{{route('send-otp',$m->id)}}" method="POST" style="display: inline">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">
+                                    Verify
+                                </button>
+                            </form>
+                            </td>
                     </tr>
                     @endforeach
                 </tbody>

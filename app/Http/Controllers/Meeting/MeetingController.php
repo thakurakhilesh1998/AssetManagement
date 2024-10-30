@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PRMeeting;
+use Twilio\Rest\Client;
 
 class MeetingController extends Controller
 {
@@ -63,5 +64,28 @@ class MeetingController extends Controller
         $meetingExists=PRMeeting::where('district',$district)->where('meeting_month',$month)->exists();
         
         return response()->json(['exists' =>$meetingExists]);
+    }
+
+    public function sendOTP($meetingId)
+    {
+        $meeting=PRMeeting::findOrFail($meetingId);
+        $otp=rand(10000,99999);
+        $meeting->otp=$otp;
+        $meeting->otp_expiration_at=now()->addMinutes(5);
+        $meeting->save();
+
+        $twilio=new Client(env('TWILIO_SID'),env('TWILIO_AUTH_TOKEN'));
+        $twilio->messages->create($meeting->user->phone,
+            [
+                'from'=>env('TWILIO_FROM'),
+                'body'=>"Your OTP code for meeting verification is:$otp"
+             ]);
+        return redirect()->route('verify',$meeting->id)->with('message','OTP sent successfully!');
+    }
+
+    public function showVerifyPage($meetingId)
+    {
+        $meeting=PRMeeting::findOrFail($meetingId);
+        return view('verify',compact('meeting'));
     }
 }

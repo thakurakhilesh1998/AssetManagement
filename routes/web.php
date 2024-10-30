@@ -71,6 +71,9 @@ Route::prefix('dpo')->middleware(['auth','web','dpocheck'])->group(function()
         }
         abort(404);
     })->name('view-proceedings');
+
+    Route::post('/send-otp/{meeting}',[MeetingController::class,'sendOTP'])->name('send-otp');
+    Route::get('/verify/{meeting}',[MeetingController::class,'showVerifyPage'])->name('verify');
 });
 
 Route::prefix('bdo')->middleware(['auth','web','bdocheck','showTimePeriodOver'])->group(function()
