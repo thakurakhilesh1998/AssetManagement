@@ -10,7 +10,7 @@ use App\Models\User;
 class PRMeeting extends Model
 {
     use HasFactory;
-    protected $fillable = ['district','meeting_month','meeting_convened','meeting_date','subject','filename','otp','otp_expiration_at','isVerified'];
+    protected $fillable = ['district','meeting_month','meeting_convened','meeting_date','subject','filename','otp','otp_expiration_at','isVerified','user_id'];
     protected $table="prmeetings";
 
     public function user()

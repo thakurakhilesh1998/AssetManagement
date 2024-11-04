@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PRMeeting;
 use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Http;
+
 
 class MeetingController extends Controller
 {
@@ -44,7 +46,8 @@ class MeetingController extends Controller
             'meeting_convened'=> $request->meeting_convened,
             'meeting_date'=>$request->meeting_date,
             'subject'=>$request->subject,
-            'filename'=>$filename
+            'filename'=>$filename,
+            'user_id'=>Auth::user()->id,
         ]);
 
         return redirect('dpo/view-meeting')->with('success','Meeting added Successfully');
@@ -73,19 +76,46 @@ class MeetingController extends Controller
         $meeting->otp=$otp;
         $meeting->otp_expiration_at=now()->addMinutes(5);
         $meeting->save();
+        $otpResponse=tryOtp($meeting->user->phone);
+        if($otpResponse)
+        {
+            return redirect()->route('verify',$meeting->id)->with('message','OTP sent successfully!');
+        }
+        else
+        {
 
-        $twilio=new Client(env('TWILIO_SID'),env('TWILIO_AUTH_TOKEN'));
-        $twilio->messages->create($meeting->user->phone,
-            [
-                'from'=>env('TWILIO_FROM'),
-                'body'=>"Your OTP code for meeting verification is:$otp"
-             ]);
-        return redirect()->route('verify',$meeting->id)->with('message','OTP sent successfully!');
+        }
+        // $twilio=new Client(env('TWILIO_SID'),env('TWILIO_AUTH_TOKEN'));
+        // $twilio->messages->create($meeting->user->phone,
+        //     [
+        //         'from'=>env('TWILIO_FROM'),
+        //         'body'=>"Your OTP code for meeting verification is:$otp"
+        //      ]);
+        // return redirect()->route('verify',$meeting->id)->with('message','OTP sent successfully!');
     }
 
     public function showVerifyPage($meetingId)
     {
         $meeting=PRMeeting::findOrFail($meetingId);
         return view('verify',compact('meeting'));
+    }
+
+    public function tryOtp($number)
+    {
+        $apikey=env('2FACTOR_API_KEY');
+        $url = "https://2factor.in/api/v1/RequestOTP/$number";
+        $response=Http::withHeaders([
+             "Content-Type" => "application/json",
+            "Authorization" => "Bearer $apikey"
+        ])->get($url);
+
+        if($response->successful())
+        {
+            return $response->json();
+        }
+        else
+        {
+            return "Can not send the otp"; // or throw an exception
+        }
     }
 }
